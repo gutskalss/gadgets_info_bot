@@ -1,10 +1,8 @@
 /* @refresh reload */
 import { render } from 'solid-js/web'
-import { Router, Route, Routes } from '@solidjs/router'
 import 'bulma'
 
-import { Root } from './routes/Root'
-import { GadgetDetails } from './routes/GadgetDetails'
+import { App } from './App'
 
 import './index.scss'
 
@@ -16,14 +14,4 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   )
 }
 
-render(
-  () => (
-    <Router>
-      <Routes>
-        <Route path='/' component={Root} />
-        <Route path='/gadget/:id' component={GadgetDetails} />
-      </Routes>
-    </Router>
-  ),
-  root!
-)
+render(() => <App />, root!)

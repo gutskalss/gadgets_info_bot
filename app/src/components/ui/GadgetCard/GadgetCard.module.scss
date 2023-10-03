@@ -11,7 +11,23 @@
     }
 
     &-content {
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      height: 259px;
+      padding: 11px;
+
+      .image-wrapper {
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        max-width: 100%;
+        max-height: 100%;
+
+        img {
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
     }
 
     &-footer {

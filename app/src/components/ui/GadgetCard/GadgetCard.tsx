@@ -5,15 +5,10 @@ import cn from 'classnames'
 import { Button } from '@/components/ui/Button/Button'
 
 import styles from './GadgetCard.module.scss'
-
-export type TGadgetCardProps = {
-  gadgetId: number
-  name: string
-  imageUrl: string
-}
+import { TGadgetInfo } from '@/types/gadgetInfo'
 
 export const GadgetCard: ParentComponent<
-  ComponentProps<'div'> & TGadgetCardProps
+  ComponentProps<'div'> & TGadgetInfo
 > = ({ gadgetId, name, imageUrl }) => {
   const navigate = useNavigate()
 
@@ -25,7 +20,9 @@ export const GadgetCard: ParentComponent<
         </p>
       </header>
       <div class={cn('card-content', styles['card-content'])}>
-        <img src={imageUrl} alt={name} />
+        <div class={styles['image-wrapper']}>
+          <img src={imageUrl} alt={name} />
+        </div>
       </div>
       <footer class={cn('card-footer', styles['card-footer'])}>
         <Button
