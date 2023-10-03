@@ -1,4 +1,5 @@
-import { Component, createSignal } from 'solid-js'
+import { Component } from 'solid-js'
+import { useSearchParams } from '@solidjs/router'
 import classNames from 'classnames'
 
 import { Input } from '@/components/ui/Input/Input'
@@ -7,7 +8,7 @@ import { Button } from '@/components/ui/Button/Button'
 import styles from './Navbar.module.scss'
 
 export const Navbar: Component = () => {
-  const [value, setValue] = createSignal<string>()
+  const [searchParams, setSearchParams] = useSearchParams()
 
   return (
     <nav
@@ -17,8 +18,8 @@ export const Navbar: Component = () => {
     >
       <Input
         placeholder='Search (ex.: iphone 15)'
-        value={value()}
-        onChange={(e) => setValue(e.target.value)}
+        value={searchParams.phone}
+        onInput={(e) => setSearchParams({ phone: e.target.value })}
         class={styles['search-input']}
       />
 
