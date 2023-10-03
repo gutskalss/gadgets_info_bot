@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite';
-import solidPlugin from 'vite-plugin-solid';
-// import devtools from 'solid-devtools/vite';
+import { defineConfig } from 'vite'
+import solidPlugin from 'vite-plugin-solid'
+import { fileURLToPath } from 'node:url'
 
 export default defineConfig({
   plugins: [
@@ -11,10 +11,18 @@ export default defineConfig({
     // devtools(),
     solidPlugin(),
   ],
+  resolve: {
+    alias: [
+      {
+        find: '@',
+        replacement: fileURLToPath(new URL('./src', import.meta.url)),
+      },
+    ],
+  },
   server: {
     port: 3000,
   },
   build: {
     target: 'esnext',
   },
-});
+})

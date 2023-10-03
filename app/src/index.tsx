@@ -1,8 +1,10 @@
 /* @refresh reload */
 import { render } from 'solid-js/web'
+import 'bulma'
 
-import './index.css'
 import { App } from './App'
+
+import './index.scss'
 
 const root = document.getElementById('root')
 
