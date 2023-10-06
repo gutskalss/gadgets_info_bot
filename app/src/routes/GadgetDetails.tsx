@@ -1,9 +1,8 @@
-import { ParentComponent, ComponentProps } from 'solid-js'
+import { ParentComponent, ComponentProps, Show } from 'solid-js'
 import { useParams } from '@solidjs/router'
 
 import { gadgets } from '@/mock/gadgets'
-import { Button } from '@/components/ui/Button/Button'
-import { GadgetInfo } from '@/components/layout/GadgetInfo/GadgetInfo'
+import { GadgetsTable, ToMain } from '@/components/layout'
 
 export const GadgetDetails: ParentComponent<ComponentProps<'div'>> = () => {
   const { id } = useParams()
@@ -11,10 +10,16 @@ export const GadgetDetails: ParentComponent<ComponentProps<'div'>> = () => {
   const selectedGadget = gadgets.find(({ gadgetId }) => gadgetId === +id)
 
   return (
-    <div class='container'>
-      <Button onClick={() => history.back()}>Back</Button>
-      {selectedGadget && <GadgetInfo selectedGadget={selectedGadget} />}
-      <Button onClick={() => history.back()}>Back</Button>
-    </div>
+    <>
+      <div class='container'>
+        <Show
+          when={selectedGadget}
+          fallback={<div class='is-size-3'>Gadget not found</div>}
+        >
+          <GadgetsTable selectedGadgets={[selectedGadget!]} />
+        </Show>
+      </div>
+      <ToMain />
+    </>
   )
 }

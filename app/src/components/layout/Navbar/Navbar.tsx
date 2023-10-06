@@ -1,8 +1,7 @@
 import { useSearchParams } from '@solidjs/router'
 import classNames from 'classnames'
 
-import { Input } from '@/components/ui/Input/Input'
-import { Button } from '@/components/ui/Button/Button'
+import { Input, Button } from '@/components/ui'
 
 import styles from './Navbar.module.scss'
 

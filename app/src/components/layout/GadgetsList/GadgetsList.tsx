@@ -7,7 +7,7 @@ import {
 } from 'solid-js'
 import { useSearchParams } from '@solidjs/router'
 
-import { GadgetCard } from '@/components/ui/GadgetCard/GadgetCard'
+import { GadgetCard } from '@/components/layout'
 import { gadgets } from '@/mock/gadgets'
 
 import styles from './GadgetsList.module.scss'

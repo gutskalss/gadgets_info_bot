@@ -10,7 +10,7 @@ import {
 import { useNavigate } from '@solidjs/router'
 import cn from 'classnames'
 
-import { Button } from '@/components/ui/Button/Button'
+import { Button } from '@/components/ui'
 import { TGadgetInfo } from '@/types/gadgetInfo'
 import { RootContext } from '@/App'
 import { MAX_COMPARE_AMOUNT } from '@/constants'

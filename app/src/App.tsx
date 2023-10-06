@@ -1,8 +1,7 @@
 import { Accessor, Setter, createContext, createSignal } from 'solid-js'
 import { Router, Route, Routes } from '@solidjs/router'
 
-import { Root } from './routes/Root'
-import { GadgetDetails } from './routes/GadgetDetails'
+import { Root, GadgetDetails, Compare } from './routes'
 
 type TRootContext = {
   selectedGadgets: Accessor<number[]>
@@ -23,6 +22,7 @@ export const App = () => {
         <Routes>
           <Route path='/' component={Root} />
           <Route path='/gadget/:id' component={GadgetDetails} />
+          <Route path='/compare' component={Compare} />
         </Routes>
       </Router>
     </RootContext.Provider>

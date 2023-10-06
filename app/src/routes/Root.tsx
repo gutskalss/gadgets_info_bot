@@ -1,11 +1,20 @@
-import { Navbar } from '@/components/layout/Navbar/Navbar'
-import { GadgetsList } from '@/components/layout/GadgetsList/GadgetsList'
+import { Show, useContext } from 'solid-js'
+
+import { RootContext } from '@/App'
+import { Navbar, GadgetsList, OpenCompareButton } from '@/components/layout'
 
 export const Root = () => {
+  const { selectedGadgets } = useContext(RootContext)
+
   return (
-    <div class='container'>
-      <Navbar />
-      <GadgetsList />
-    </div>
+    <>
+      <div class='container'>
+        <Navbar />
+        <GadgetsList />
+      </div>
+      <Show when={selectedGadgets().length}>
+        <OpenCompareButton />
+      </Show>
+    </>
   )
 }
