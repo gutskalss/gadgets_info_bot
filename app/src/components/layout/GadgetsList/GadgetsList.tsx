@@ -3,6 +3,7 @@ import {
   ComponentProps,
   createEffect,
   createSignal,
+  For,
 } from 'solid-js'
 import { useSearchParams } from '@solidjs/router'
 
@@ -31,9 +32,9 @@ export const GadgetsList: ParentComponent<ComponentProps<'div'>> = () => {
 
   return (
     <div class={styles.root}>
-      {filteredGadgets().map((gadget) => (
-        <GadgetCard {...gadget} />
-      ))}
+      <For each={filteredGadgets()}>
+        {(gadget) => <GadgetCard {...gadget} />}
+      </For>
     </div>
   )
 }

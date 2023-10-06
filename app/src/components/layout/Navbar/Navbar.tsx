@@ -1,4 +1,3 @@
-import { Component } from 'solid-js'
 import { useSearchParams } from '@solidjs/router'
 import classNames from 'classnames'
 
@@ -7,7 +6,7 @@ import { Button } from '@/components/ui/Button/Button'
 
 import styles from './Navbar.module.scss'
 
-export const Navbar: Component = () => {
+export const Navbar = () => {
   const [searchParams, setSearchParams] = useSearchParams()
 
   return (
