@@ -1,4 +1,10 @@
-import { ParentComponent, ComponentProps, Show, onCleanup } from 'solid-js'
+import {
+  ParentComponent,
+  ComponentProps,
+  Show,
+  onCleanup,
+  onMount,
+} from 'solid-js'
 import { useNavigate, useParams } from '@solidjs/router'
 
 import { gadgets } from '@/mock/gadgets'
@@ -11,10 +17,14 @@ export const GadgetDetails: ParentComponent<ComponentProps<'div'>> = () => {
 
   const selectedGadget = gadgets.find(({ gadgetId }) => gadgetId === +id)
 
-  tg.BackButton.show()
-  tg.BackButton.onClick(() => navigate('/'))
+  onMount(() => {
+    tg.BackButton.show()
+    tg.BackButton.onClick(() => navigate('/'))
+  })
 
-  onCleanup(tg.BackButton.hide)
+  onCleanup(() => {
+    tg.BackButton.hide()
+  })
 
   return (
     <div class='container'>

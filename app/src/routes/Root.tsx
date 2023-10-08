@@ -1,15 +1,26 @@
-import { Show, useContext } from 'solid-js'
+import { createEffect, onCleanup, useContext } from 'solid-js'
 
 import { RootContext } from '@/App'
-import {
-  Filters,
-  Navbar,
-  GadgetsList,
-  OpenCompareButton,
-} from '@/components/layout'
+import { Filters, Navbar, GadgetsList } from '@/components/layout'
+import { tg } from '@/constants'
+import { useNavigate } from '@solidjs/router'
 
 export const Root = () => {
-  const { selectedGadgets } = useContext(RootContext)
+  const { isFiltersActive, selectedGadgets } = useContext(RootContext)
+  const navigate = useNavigate()
+
+  tg.MainButton.setText('Open comparison')
+  tg.MainButton.onClick(() => navigate('/compare'))
+
+  createEffect(() => {
+    if (selectedGadgets().length && !isFiltersActive()) {
+      tg.MainButton.show()
+      return
+    }
+    tg.MainButton.hide()
+  })
+
+  onCleanup(tg.MainButton.hide)
 
   return (
     <>
@@ -17,9 +28,6 @@ export const Root = () => {
         <Navbar />
         <GadgetsList />
       </div>
-      <Show when={selectedGadgets().length}>
-        <OpenCompareButton />
-      </Show>
 
       <Filters />
     </>
