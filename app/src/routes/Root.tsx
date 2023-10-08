@@ -1,7 +1,12 @@
 import { Show, useContext } from 'solid-js'
 
 import { RootContext } from '@/App'
-import { Navbar, GadgetsList, OpenCompareButton } from '@/components/layout'
+import {
+  Filters,
+  Navbar,
+  GadgetsList,
+  OpenCompareButton,
+} from '@/components/layout'
 
 export const Root = () => {
   const { selectedGadgets } = useContext(RootContext)
@@ -15,6 +20,8 @@ export const Root = () => {
       <Show when={selectedGadgets().length}>
         <OpenCompareButton />
       </Show>
+
+      <Filters />
     </>
   )
 }

@@ -1,3 +1,4 @@
+export * from './Filters/Filters'
 export * from './GadgetCard/GadgetCard'
 export * from './GadgetsList/GadgetsList'
 export * from './GadgetsTable/GadgetsTable'

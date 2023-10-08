@@ -13,21 +13,33 @@ import { gadgets } from '@/mock/gadgets'
 import styles from './GadgetsList.module.scss'
 import { TGadgetInfo } from '@/types/gadgetInfo'
 
-const filterGadgets = (filter?: string) =>
-  filter
-    ? gadgets.filter(({ name }) => {
-        return name.toLowerCase().includes(filter.toLowerCase())
-      })
-    : gadgets
+type TFilters = {
+  name?: string
+  brands?: string
+}
+
+const filterGadgets = (filter: TFilters) =>
+  gadgets.filter(({ name, brand }) => {
+    const nameValid = filter.name
+      ? name.toLowerCase().includes(filter.name.toLowerCase())
+      : true
+    const brandValid = filter.brands
+      ? filter.brands.toLowerCase().includes(brand.toLowerCase())
+      : true
+
+    return nameValid && brandValid
+  })
 
 export const GadgetsList: ParentComponent<ComponentProps<'div'>> = () => {
   const [searchParams] = useSearchParams()
   const [filteredGadgets, setFilteredGadgets] = createSignal<TGadgetInfo[]>(
-    filterGadgets(searchParams.phone)
+    filterGadgets({ name: searchParams.phone, brands: searchParams.brands })
   )
 
   createEffect(() => {
-    setFilteredGadgets(filterGadgets(searchParams.phone))
+    setFilteredGadgets(
+      filterGadgets({ name: searchParams.phone, brands: searchParams.brands })
+    )
   })
 
   return (

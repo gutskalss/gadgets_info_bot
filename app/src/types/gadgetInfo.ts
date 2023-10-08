@@ -2,6 +2,7 @@ import { ExtractFieldsOfType } from './utils'
 
 export type TGadgetInfo = {
   gadgetId: number
+  brand: Brands
   name: string
   imageUrl: string
   specifications: TGadgetSpecs
@@ -76,3 +77,10 @@ export type TGadgetSpecs = {
 }
 
 export type TSpecsCategories = ExtractFieldsOfType<TGadgetSpecs, object>
+
+export enum Brands {
+  APPLE = 'apple',
+  SAMSUNG = 'samsung',
+  GOOGLE = 'google',
+  XIAOMI = 'xiaomi',
+}
